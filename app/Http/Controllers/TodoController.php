@@ -69,17 +69,26 @@ class TodoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Todo $todo)
+    public function edit(Todo $todo) //route model binding
     {
-        //
+        return view('todos.edit',compact('todo'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTodoRequest $request, Todo $todo)
+    public function update(Request $request, Todo $todo)
     {
-        //
+        // return $request;
+        $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required',
+            'is_completed' => 'nullable',
+        ]);
+        $todo ->is_completed = $request->is_completed ?? 0;
+        $todo->update($request->all());
+
+        return redirect()->route('todos.index')->with('success','Todo update successfully');
     }
 
     /**
@@ -87,6 +96,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect()->route('todos.index')->with('success','Todo delete successfully');
     }
 }
