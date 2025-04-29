@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/todos',[TodoController::class,'index'])->name('todos.index');
 Route::get('/todos/create',[TodoController::class,'create'])->name('todos.create');
 Route::post('/todos',[TodoController::class,'store'])->name('todos.store');
+Route::get('/todos/{todo}/edit',[TodoController::class,'edit'])->name('todos.edit');
+Route::put('/todos/{todo}',[TodoController::class,'update'])->name('todos.update');
+Route::delete('/todos/{todo}',[TodoController::class,'destroy'])->name('todos.destroy');
 
 
-
+//RESTFul
+//graphQL
+//trpc
 
 
 
@@ -37,5 +42,3 @@ Route::get('/contact', function () {
 Route::get('/404', function () {
     return view('errors.404');
 });
-
-

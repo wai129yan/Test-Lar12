@@ -8,6 +8,9 @@
         <a href="{{route('todos.create')}}"" class="bg-green-300 p-3 rounded">
             New Todo
         </a>
+        @if(session('success'))
+            <p class="text-green-500 mt-1">{{session ('success')}}</p>
+        @endif
         @include('components.todo-table')
     </div>
 
