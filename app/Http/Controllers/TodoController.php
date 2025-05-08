@@ -22,7 +22,10 @@ class TodoController extends Controller
 
         $todos = Todo::paginate(5);
         // return $todos;
-
+        // return response()->json([
+        //     'success'=>true,
+        //     'results'=>$todos
+        // ],200);
         return view('todos.index', compact('todos'));
     }
 

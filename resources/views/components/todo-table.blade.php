@@ -39,12 +39,14 @@
                         {{ $todo->is_completed ? 'Completed' : 'Not Completed' }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="{{route('todos.edit',$todo)}}" class="text-yellow hover:underline  bg-green-100 border-2 p-2">Edit</a>
+                        <a href="{{ route('todos.edit', $todo) }}"
+                            class="inline-block w-20 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
 
-                        <form action="{{route('todos.destroy',$todo)}}" method="POST">
+                        <form action="{{ route('todos.destroy', $todo) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="font-medium  text-red-600 dark:text-red-500 hover:underline">
+                            <button type="submit"
+                                class="w-20 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                 Delete
                             </button>
                         </form>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -13,7 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //$postUser = Post::where('user_id', auth()->user()->id)->get();
+        $users = User::all();
+        $posts = Post::all();
+        $categories = Category::all();
+        return view('posts.index', compact('posts', 'users', 'categories'));
+
     }
 
     /**
@@ -21,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create'); // Assuming you have a create view for posts in resources/views/posts/creat
     }
 
     /**
