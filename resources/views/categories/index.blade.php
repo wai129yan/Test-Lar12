@@ -17,7 +17,7 @@
         @if (session('success'))
             <p class="text-green-500 mt-1">{{ session('success') }}</p>
         @endif
-        <div class="p-5 ">
+        <div class="p-5">
             @foreach ($categories as $category)
                 <div
                     class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">
