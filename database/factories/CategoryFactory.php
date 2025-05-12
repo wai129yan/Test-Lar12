@@ -18,11 +18,6 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->unique()->word(),
-            'slug' => fake()->unique()->slug(),
-           'description' => fake()->text(),
-
-           'image' => fake()->imageUrl(),
-           'status' => fake()->randomElement(['active', 'inactive']),
            'created_at' => now(),
            'updated_at' => now(),
         ];

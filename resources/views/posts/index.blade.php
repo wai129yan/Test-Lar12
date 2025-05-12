@@ -21,17 +21,32 @@
                 <div
                     class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">
                     <div class="relative overflow-hidden rounded-t-xl">
-                        <img class="object-cover w-full h-[400px] transform transition duration-500 group-hover:scale-110"
-                            src="{{ $post->image }}" alt="{{ $post->title }}">
+                        <img class="object-cover w-full h-[300px] transform transition duration-500 group-hover:scale-110"
+                            src="{{ Storage::url($post->image) ?? Storage::url('posts/a.jpg') }}" alt="{{ $post->title }}">
+                        {{-- <img class="object-cover w-full h-[300px] transform transition duration-500 group-hover:scale-110"
+                            src="{{ asset("storage/".$post->image) }}" alt="{{ $post->title }}"> --}}
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300">
                         </div>
                     </div>
 
                     <div class="p-6 space-y-4">
-                        <h5
-                            class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
-                            {{ $post->title }}
-                        </h5>
+                        <div class="flex justify-between">
+                            <h5
+                                class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
+                                {{ $post->title }}
+                            </h5>
+                            <span class="py-1 px-2 bg-amber-500 text-white rounded">{{ $post->status }}</span>
+                        </div>
+                        {{-- /* model -> function Name */ --}}
+                        <div>
+                            <div>
+                                <a href="" class="uppercase font-bold">{{ $post->category->name }}</a>
+                            </div>
+                            <span>Post By ::
+                                <a href="">{{ $post->user->name }}</a>
+                            </span><br>
+                            <span>Created At :: {{ $post->created_at->diffForHumans() }}</span>
+                        </div>
 
                         <div class="space-y-3">
                             <p class="text-gray-600 dark:text-gray-300 line-clamp-3">

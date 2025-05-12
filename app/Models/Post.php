@@ -11,6 +11,14 @@ class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'status',
+        'user_id',
+        'category_id',
+    ];
 
     public function user()
     {
