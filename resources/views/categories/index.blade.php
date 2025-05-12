@@ -3,7 +3,7 @@
 @section('contact')
 
 
-    <h1 class="text-3xl font-bold p-5 text-center">Posts</h1>
+    <h1 class="text-3xl font-bold p-5 text-center">Categories</h1>
     <div class="w-3/4 m-auto p-2 mt-5">
         <a href="{{ route('categories.create') }}"
             class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg text-sm transition duration-300 ease-in-out">
@@ -18,6 +18,7 @@
             <p class="text-green-500 mt-1">{{ session('success') }}</p>
         @endif
         <div class="p-5">
+
             @foreach ($categories as $category)
                 <div
                     class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">

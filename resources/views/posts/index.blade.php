@@ -2,30 +2,78 @@
 @section('title', 'Posts')
 @section('contact')
 
-
     <h1 class="text-3xl font-bold p-5 text-center">Posts</h1>
     <div class="w-3/4 m-auto p-2 mt-5">
-        <a href="{{ route('posts.create') }}" class="bg-green-300 p-3 rounded">
+        <a href="{{ route('posts.create') }}"
+            class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg text-sm transition duration-300 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    clip-rule="evenodd" />
+            </svg>
             New Post
         </a>
         @if (session('success'))
             <p class="text-green-500 mt-1">{{ session('success') }}</p>
         @endif
-        <div class="p-5 ">
+        <div class="p-5">
             @foreach ($posts as $post)
-                <a href="#"
-                    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-5">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-[320px] md:w-[300px] md:rounded-none md:rounded-s-lg"
-                        src="{{ $post->image }}" alt="This is Photo">
-                    <div class="flex flex-col justify-between p-4 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $post->title }}
-                        </h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $post->content }}</p>
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">
+                    <div class="relative overflow-hidden rounded-t-xl">
+                        <img class="object-cover w-full h-[400px] transform transition duration-500 group-hover:scale-110"
+                            src="{{ $post->image }}" alt="{{ $post->title }}">
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300">
+                        </div>
                     </div>
-                </a>
+
+                    <div class="p-6 space-y-4">
+                        <h5
+                            class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
+                            {{ $post->title }}
+                        </h5>
+
+                        <div class="space-y-3">
+                            <p class="text-gray-600 dark:text-gray-300 line-clamp-3">
+                                {{ $post->content }}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex space-x-2">
+                                <a href="{{ route('posts.edit', $post->id) }}"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path
+                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                        <path fill-rule="evenodd"
+                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Edit
+                                </a>
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+                                        onclick="return confirm('Are you sure you want to delete this post?')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
     </div>
-
 
 @endsection

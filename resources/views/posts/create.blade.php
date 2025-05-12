@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Todo-Create')
 @section('contact')
-    <h1 class="text-3xl font-bold text-center hel">Todos Create</h1>
+    <h1 class="text-3xl font-bold text-center hel">Post Create</h1>
 
     <div class="w-100 bg-slate-100 m-auto p-7 mt-5 rounded-2xl">
         <form class="max-w-sm mx-auto" action="{{ route('todos.store') }}" method="post">
