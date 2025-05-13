@@ -1,61 +1,482 @@
 @extends('layouts.app')
-@section('title', 'Post Details')
-@section('content')
+@section('title', 'Posts')
+@section('contact')
 
-<h1 class="text-3xl font-bold text-center hel">Post Details</h1>
+    <div class="p-20">
+        <main class="container mx-auto px-4 py-8 flex flex-col lg:flex-row">
+            <!-- Blog Content -->
+            <article class="w-full lg:w-2/3 lg:pr-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Web Development"
+                        class="w-full h-64 object-cover">
 
-{{-- <div class="w-100 bg-slate-100 m-auto p-7 mt-5 rounded-2xl">
-    <div class="max-w-sm mx-auto">
-        <!-- Post Title -->
-        <h1 class="text-2xl font-bold mb-5">{{ $post['title'] }}</h1>
+                    <div class="p-6">
+                        <!-- Article Header -->
+                        <div class="mb-6">
+                            <h1 class="text-3xl font-bold mb-2 capitalize">{{ $post->title }}</h1>
+                            <div class="flex items-center text-gray-500 text-sm mb-4">
+                                <span class="mr-4"><i class="far fa-calendar mr-1"></i> {{ $post->created_at }}</span>
+                                <span class="mr-4"><i class="far fa-user mr-1"></i> By {{ $post->user->name }}</span>
+                                <span><i class="far fa-folder mr-1"></i> {{ $post->category->name }}</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web
+                                    Development</span>
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">JavaScript</span>
+                                <span
+                                    class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">AI</span>
+                                <span
+                                    class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Trends</span>
+                            </div>
+                        </div>
 
-        <!-- Post Content -->
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
-            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                {{ $post['content']}}
-            </p>
-        </div>
+                        <!-- Article Content -->
+                        <div class="prose max-w-none">
+                            <p class="mb-4">
+                                The web development landscape continues to evolve at a breathtaking pace. As we move through
+                                2025, several emerging technologies and methodologies are reshaping how we build and
+                                interact with web applications. This comprehensive guide explores the most significant
+                                trends that are defining the future of web development.
+                            </p>
 
-        <!-- Post Image -->
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-            @if ($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" width="150px" alt="Post Image">
-            @else
-                <p class="text-gray-500">No image available</p>
-            @endif
-        </div>
+                            <h2 class="text-2xl font-bold mt-8 mb-4">1. AI-Driven Development</h2>
+                            <p class="mb-4">
+                                Artificial Intelligence is no longer just a buzzword in web development—it's becoming an
+                                integral part of the development process itself. AI-powered tools are now capable of:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Generating code based on natural language descriptions</li>
+                                <li class="mb-2">Automatically testing and debugging applications</li>
+                                <li class="mb-2">Optimizing performance based on user behavior patterns</li>
+                                <li class="mb-2">Creating personalized user experiences in real-time</li>
+                            </ul>
+                            <p class="mb-4">
+                                Developers who embrace these AI tools are seeing dramatic improvements in productivity, with
+                                some reporting up to 40% reduction in development time for complex features.
+                            </p>
 
-        <!-- Post Status -->
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                {{ ucfirst($post['status']) }}
-            </p>
-        </div>
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                                <p class="italic">
+                                    "AI isn't replacing developers—it's supercharging them. The most successful teams are
+                                    those that have found the right balance between human creativity and AI assistance."
+                                    <span class="block mt-2 font-semibold">— Elena Rodriguez, CTO at TechFuture</span>
+                                </p>
+                            </div>
 
-        <!-- Post User -->
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User</label>
-            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                {{ $post->user->name ?? 'N/A' }}
-            </p>
-        </div>
+                            <h2 class="text-2xl font-bold mt-8 mb-4">2. WebAssembly Revolution</h2>
+                            <p class="mb-4">
+                                WebAssembly (Wasm) has matured significantly, enabling near-native performance for web
+                                applications. This technology allows developers to write code in languages like Rust, C++,
+                                and Go, then compile it to run in the browser at speeds previously unattainable with
+                                JavaScript alone.
+                            </p>
+                            <p class="mb-4">
+                                Key applications of WebAssembly in 2025 include:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">High-performance web-based gaming platforms</li>
+                                <li class="mb-2">Complex data visualization and analysis tools</li>
+                                <li class="mb-2">Advanced image and video editing applications</li>
+                                <li class="mb-2">Scientific and engineering simulations</li>
+                            </ul>
 
-        <!-- Post Category -->
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                {{ $post->category->name ?? 'N/A' }}
-            </p>
-        </div>
+                            <h2 class="text-2xl font-bold mt-8 mb-4">3. Edge Computing and Distributed Systems</h2>
+                            <p class="mb-4">
+                                The edge computing paradigm continues to gain momentum, with applications increasingly
+                                running closer to users rather than in centralized data centers. This approach offers
+                                several advantages:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h3 class="font-bold text-lg mb-2">Reduced Latency</h3>
+                                    <p>Processing data closer to the source minimizes response times, crucial for real-time
+                                        applications.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h3 class="font-bold text-lg mb-2">Improved Reliability</h3>
+                                    <p>Distributed systems are more resilient to outages and can maintain functionality even
+                                        when parts of the network fail.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h3 class="font-bold text-lg mb-2">Enhanced Privacy</h3>
+                                    <p>Sensitive data can be processed locally, reducing the need to transmit personal
+                                        information to remote servers.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h3 class="font-bold text-lg mb-2">Bandwidth Efficiency</h3>
+                                    <p>Only relevant data is sent to the cloud, reducing network congestion and costs.</p>
+                                </div>
+                            </div>
 
-        <!-- Back Button -->
-        <a href="{{ route('posts.index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Back to Posts
-        </a>
+                            <h2 class="text-2xl font-bold mt-8 mb-4">4. Micro-Frontends Architecture</h2>
+                            <p class="mb-4">
+                                As web applications grow in complexity, the micro-frontends approach has emerged as a
+                                solution for managing large-scale projects. This architectural style extends microservices
+                                principles to frontend development, allowing teams to:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Develop, test, and deploy parts of the frontend independently</li>
+                                <li class="mb-2">Use different frameworks or libraries for different components as needed
+                                </li>
+                                <li class="mb-2">Scale team size without decreasing productivity</li>
+                                <li class="mb-2">Gradually modernize legacy applications</li>
+                            </ul>
+
+                            <div class="relative overflow-hidden mb-8 mt-6">
+                                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e"
+                                    alt="Team collaboration" class="w-full h-64 object-cover rounded-lg">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                    <p class="text-white text-sm">Modern development teams are increasingly adopting
+                                        micro-frontend architectures to manage complex applications.</p>
+                                </div>
+                            </div>
+
+                            <h2 class="text-2xl font-bold mt-8 mb-4">5. Serverless and Low-Code Development</h2>
+                            <p class="mb-4">
+                                The serverless paradigm continues to transform how backend services are built and deployed.
+                                Developers can now focus on writing business logic while cloud providers handle
+                                infrastructure scaling and management. Simultaneously, low-code platforms are democratizing
+                                web development, enabling:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Faster prototyping and iteration</li>
+                                <li class="mb-2">Reduced development costs for standard functionality</li>
+                                <li class="mb-2">Greater participation from non-technical stakeholders</li>
+                                <li class="mb-2">Integration of custom code when needed for specialized features</li>
+                            </ul>
+
+                            <h2 class="text-2xl font-bold mt-8 mb-4">6. Progressive Web Apps 2.0</h2>
+                            <p class="mb-4">
+                                Progressive Web Apps (PWAs) have evolved significantly, with new capabilities that blur the
+                                line between web and native applications even further. The latest generation of PWAs offers:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Advanced hardware access (Bluetooth, USB, file system)</li>
+                                <li class="mb-2">Improved offline functionality with sophisticated data synchronization
+                                </li>
+                                <li class="mb-2">Better integration with operating systems, including notifications and
+                                    shortcuts</li>
+                                <li class="mb-2">Near-native performance with optimized rendering techniques</li>
+                            </ul>
+
+                            <h2 class="text-2xl font-bold mt-8 mb-4">7. Accessibility as a Priority</h2>
+                            <p class="mb-4">
+                                Web accessibility has moved from a nice-to-have feature to a fundamental requirement. This
+                                shift is driven by:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Stronger legal requirements and standards enforcement</li>
+                                <li class="mb-2">Growing recognition of the business benefits of inclusive design</li>
+                                <li class="mb-2">Better tools for testing and implementing accessible features</li>
+                                <li class="mb-2">Increased awareness and education among developers</li>
+                            </ul>
+                            <p class="mb-4">
+                                Leading organizations are now integrating accessibility testing throughout the development
+                                process rather than treating it as a final checklist item.
+                            </p>
+
+                            <h2 class="text-2xl font-bold mt-8 mb-4">Conclusion: Embracing the Future</h2>
+                            <p class="mb-4">
+                                The web development landscape of 2025 offers exciting opportunities for those willing to
+                                embrace new technologies and methodologies. Successful developers and organizations will be
+                                those that:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4">
+                                <li class="mb-2">Continuously learn and adapt to emerging trends</li>
+                                <li class="mb-2">Balance innovation with practical business needs</li>
+                                <li class="mb-2">Prioritize user experience and accessibility</li>
+                                <li class="mb-2">Leverage automation and AI to enhance (not replace) human creativity</li>
+                            </ul>
+                            <p class="mb-4">
+                                By staying informed and open to change, web developers can not only keep pace with the
+                                industry but help shape its future direction.
+                            </p>
+                        </div>
+
+                        <!-- Author Bio -->
+                        <div class="mt-10 pt-8 border-t border-gray-200">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
+                                    class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">Sarah Johnson</h3>
+                                    <p class="text-gray-600">Senior Web Developer and Technology Writer with over 10 years
+                                        of experience in the industry. Sarah specializes in emerging web technologies and
+                                        their practical applications for businesses.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Share Buttons -->
+                        <div class="mt-8 flex items-center">
+                            <span class="mr-4 text-gray-700">Share this article:</span>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-blue-600 hover:text-blue-800">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="#" class="text-blue-800 hover:text-blue-900">
+                                    <i class="fab fa-facebook-f text-xl"></i>
+                                </a>
+                                <a href="#" class="text-blue-500 hover:text-blue-700">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                                <a href="#" class="text-red-600 hover:text-red-700">
+                                    <i class="fab fa-pinterest text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="mt-12">
+                            <h3 class="text-xl font-bold mb-6">Comments (5)</h3>
+
+                            <!-- Comment Form -->
+                            <form class="mb-8">
+                                <div class="mb-4">
+                                    <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-primary"
+                                        rows="4" placeholder="Join the discussion..."></textarea>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex space-x-4">
+                                        <input type="text"
+                                            class="px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-primary"
+                                            placeholder="Name">
+                                        <input type="email"
+                                            class="px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-primary"
+                                            placeholder="Email">
+                                    </div>
+                                    <button type="submit"
+                                        class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded-lg transition">Post
+                                        Comment</button>
+                                </div>
+                            </form>
+
+                            <!-- Comments List -->
+                            <div class="space-y-6">
+                                <!-- Comment 1 -->
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
+                                            class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <h4 class="font-bold">Michael Chen</h4>
+                                            <span class="text-gray-500 text-sm">May 13, 2025 • 10:23 AM</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">Great article! I've been experimenting with WebAssembly for a
+                                        data visualization project, and the performance gains are substantial. Would love to
+                                        see a follow-up piece on how to integrate Wasm with existing JavaScript frameworks.
+                                    </p>
+                                    <div class="mt-2 flex items-center text-sm text-gray-500">
+                                        <button class="flex items-center mr-4 hover:text-primary">
+                                            <i class="far fa-thumbs-up mr-1"></i> 12
+                                        </button>
+                                        <button class="hover:text-primary">Reply</button>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 2 -->
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
+                                            class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <h4 class="font-bold">Priya Sharma</h4>
+                                            <span class="text-gray-500 text-sm">May 12, 2025 • 4:45 PM</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">The section on micro-frontends resonates with my experience.
+                                        We
+                                        recently restructured our e-commerce platform using this approach, and it's been a
+                                        game-changer for our team's productivity. The initial setup was challenging, but the
+                                        long-term benefits are worth it.</p>
+                                    <div class="mt-2 flex items-center text-sm text-gray-500">
+                                        <button class="flex items-center mr-4 hover:text-primary">
+                                            <i class="far fa-thumbs-up mr-1"></i> 8
+                                        </button>
+                                        <button class="hover:text-primary">Reply</button>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 3 with Reply -->
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="User"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div>
+                                                <h4 class="font-bold">James Wilson</h4>
+                                                <span class="text-gray-500 text-sm">May 11, 2025 • 9:12 AM</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">I'm skeptical about the AI-driven development trend. While
+                                            these tools can help with boilerplate code, I've found they often struggle with
+                                            complex business logic and edge cases. Has anyone had success using AI for more
+                                            than basic tasks?</p>
+                                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                                            <button class="flex items-center mr-4 hover:text-primary">
+                                                <i class="far fa-thumbs-up mr-1"></i> 5
+                                            </button>
+                                            <button class="hover:text-primary">Reply</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reply to Comment 3 -->
+                                    <div class="bg-gray-50 p-4 rounded-lg ml-12 border-l-4 border-gray-300">
+                                        <div class="flex items-center mb-2">
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                                                alt="Sarah Johnson" class="w-10 h-10 rounded-full mr-3">
+                                            <div>
+                                                <h4 class="font-bold">Sarah Johnson <span
+                                                        class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded ml-2">Author</span>
+                                                </h4>
+                                                <span class="text-gray-500 text-sm">May 11, 2025 • 10:30 AM</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">Great point, James. AI tools definitely have limitations.
+                                            In my experience, they're most effective when used to augment rather than
+                                            replace human judgment. For complex logic, I've had success using AI to generate
+                                            test cases and identify edge cases I might have missed, even if the
+                                            implementation still requires human expertise.</p>
+                                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                                            <button class="flex items-center mr-4 hover:text-primary">
+                                                <i class="far fa-thumbs-up mr-1"></i> 7
+                                            </button>
+                                            <button class="hover:text-primary">Reply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="w-full lg:w-1/3 mt-8 lg:mt-0">
+                <!-- Author Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
+                            class="w-24 h-24 rounded-full mb-4">
+                        <h3 class="text-xl font-bold mb-2"><a href="">{{ $post->user->name }}</a></h3>
+                        <p class="text-gray-600 mb-4">Web developer, writer, and speaker specializing in modern frontend
+                            technologies.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-bold mb-4">Search</h3>
+                    <div class="relative">
+                        <input type="text" placeholder="Search articles..."
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="absolute right-3 top-2 text-gray-500 hover:text-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-bold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        @foreach ($categories as $category)
+                            <li>
+                                <a href="#"
+                                    class="flex justify-between items-center text-gray-700 hover:text-primary">
+                                    <span class="capitalize">{{ $category->name }}</span>
+                                    <span
+                                        class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded">{{ $category->posts_count }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+
+                <!-- Popular Posts Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-bold mb-4">Latest Posts</h3>
+                    <div class="space-y-4">
+                        @foreach (DB::table('posts')->limit(3)->get() as $post)
+                            <div class="flex">
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="Coding"
+                                    class="w-20 h-20 object-cover rounded mr-3">
+                                <div>
+                                    <h4 class="font-medium hover:text-primary"><a
+                                            href="#">{{ Str::limit($post->content, 50) }}</a>
+                                    </h4>
+                                    <p class="text-gray-500 text-sm">{{ $post->created_at }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-bold mb-2">Subscribe to Newsletter</h3>
+                    <p class="text-gray-600 mb-4">Get the latest articles and resources sent straight to your inbox.</p>
+                    <form>
+                        <div class="mb-3">
+                            <input type="email" placeholder="Your email address"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded-lg transition">Subscribe</button>
+                    </form>
+                </div>
+
+                <!-- Tags Widget -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold mb-4">Tags</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">JavaScript</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">CSS</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">HTML</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">React</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">Vue</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">Angular</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">TypeScript</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">Node.js</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">Performance</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">Accessibility</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">WebAssembly</a>
+                        <a href="#"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded transition">PWA</a>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
     </div>
-</div> --}}
+
+
 
 @endsection

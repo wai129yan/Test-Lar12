@@ -29,12 +29,14 @@
                                 class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:text-blue-300 dark:bg-blue-900">
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 18 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
                                         d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97" />
                                 </svg>
                             </div>
                             <div class="ms-3 font-normal">
-                                <span class="mb-1 text-2xl font-semibold text-gray-900 dark:text-white">Tap here to update !</span>
+                                <span class="mb-1 text-2xl font-semibold text-gray-900 dark:text-white">Tap here to update
+                                    !</span>
                                 <div class="mb-2 text-xl font-normal"> We’ve just released an update! </div>
                                 <div class="grid grid-cols-2 gap-2">
                                 </div>
@@ -45,8 +47,8 @@
                                 <span class="sr-only">Close</span>
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
                             </button>
                         </div>
@@ -103,7 +105,7 @@
                                     </svg>
                                     Edit
                                 </a>
-                                <a href="{{ route('posts.show', $post->id) }}"
+                                <a href="{{ route('posts.show', $post) }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
                                         fill="currentColor">

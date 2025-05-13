@@ -26,8 +26,8 @@ class CategoryController extends Controller
     public function create()
     {
 
-       $posts = Post::all();
-        return view('categories.create',compact('users,posts')); // Assuming you have a create view for Category in resources/views/categories/create.blueprin
+
+        return view('categories.create'); // Assuming you have a create view for Category in resources/views/categories/create.blueprin
     }
 
     /**

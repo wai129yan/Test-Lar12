@@ -50,7 +50,7 @@
 
             <div class="mb-5">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                <input type="hidden" name="old-image" value="{{ $post->image }}">
+                {{-- <input type="hidden" name="old-image" value="{{ $post->image }}"> --}}
 
                 <!-- Show the current image -->
                 @if ($post->image)

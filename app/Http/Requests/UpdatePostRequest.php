@@ -24,7 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add validation for the image field
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add validation for the image field
             'status' => 'required|in:published,draft',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',

@@ -28,16 +28,8 @@
                             </h5>
                         </div>
                         <div>
-                            @foreach ($category->posts as $post)
-                                <div>
-                                    <a href="" class="uppercase font-bold">{{ $post->name }}</a>
-                                </div>
-                                <span>Category By ::
-                                    <a href="">{{ $post->user->name }}</a>
-                                </span><br>
-                                <span>Created At :: {{ $post->created_at->diffForHumans() }}</span>
-                                <hr>
-                            @endforeach
+                            <span>Created At :: {{ $category->created_at->diffForHumans() }}</span>
+
                         </div>
 
                         <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700">

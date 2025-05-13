@@ -23,8 +23,11 @@
 
 <body>
     @include('layouts.nav')
-    @yield('contact')
+    <div class="min-h-screen">
+        @yield('contact')
+    </div>
 
+    @include('layouts.footer')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

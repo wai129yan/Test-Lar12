@@ -60,9 +60,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //return $post;
-
-        return view('posts.show', compact('post'));
+        // return $post;related with others (get)
+        $categories = Category::withCount('posts')->get();
+        // $post = Post::latest()->take(5)->get();
+        // $posts = Post::latest()->limit(5)->get();
+        return view('posts.show', compact('post','categories'));
     }
 
     /**
@@ -81,35 +83,32 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-         $validated = $request->validated();
-        // $updateData = $validated;
-        // if ($request->hasFile('image')) {
-
-        //     if ($post->image) {
-
-        //         Storage::disk('public')->delete($post->image);
-        //     }
-
-        //     $photoPath = $request->file('image')->store('photos', 'public');
-        //     $updateData['image'] = $photoPath;
-        // } elseif ($request->has('old-image') && $request->old('old-image')) {
-
-        //     $updateData['image'] = $request->old('old-image');
-        // }
-
-        // $post->update($updateData);
-
-        // return redirect()->route('posts.index')->with('success', 'Post updated successfully');
-
-        $new = $request->all();
+        $validated = $request->validated();
+        $updateData = $validated;
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($post->image);
+
+            if ($post->image) {
+
+                Storage::disk('public')->delete($post->image);
+            }
+
             $photoPath = $request->file('image')->store('photos', 'public');
-            $new['image'] = $photoPath;
+            $updateData['image'] = $photoPath;
         }
 
-        $post->update($new);
+        $post->update($updateData);
+
         return redirect()->route('posts.index')->with('success', 'Post updated successfully');
+
+        // $new = $request->all();
+        // if ($request->hasFile('image')) {
+        //     Storage::disk('public')->delete($post->image);
+        //     $photoPath = $request->file('image')->store('photos', 'public');
+        //     $new['image'] = $photoPath;
+        // }
+
+        // $post->update($new);
+        // return redirect()->route('posts.index')->with('success', 'Post updated successfully');
     }
     //  * Remove the specified resource from storage.
 
