@@ -30,7 +30,7 @@ Route::resource('posts',PostController::class);
 
 
 
-/* Testing */
+/* Testing API*/
 // Route::get('/test', function () {
 //     $user = User::find(1);
 //     // return $user->posts;

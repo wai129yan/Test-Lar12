@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Todo-Create')
+@section('title', 'Category-Create')
 @section('contact')
     <h1 class="text-3xl font-bold text-center hel">Post Create</h1>
 

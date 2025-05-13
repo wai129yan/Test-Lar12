@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5); ;
         return view('categories.index',compact('categories'));
     }
 
@@ -23,7 +25,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create'); // Assuming you have a create view for Category in resources/views/categories/create.blueprin
+
+       $posts = Post::all();
+        return view('categories.create',compact('users,posts')); // Assuming you have a create view for Category in resources/views/categories/create.blueprin
     }
 
     /**
@@ -31,7 +35,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $newCate = $request->validated();
+        Category::create($newCate);
+        return redirect()->route('categories.index')->with('success', 'Post created successfully');
     }
 
     /**

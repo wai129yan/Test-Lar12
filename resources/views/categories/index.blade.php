@@ -1,7 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Posts')
+@section('title', 'Category')
 @section('contact')
-
 
     <h1 class="text-3xl font-bold p-5 text-center">Categories</h1>
     <div class="w-3/4 m-auto p-2 mt-5">
@@ -18,42 +17,30 @@
             <p class="text-green-500 mt-1">{{ session('success') }}</p>
         @endif
         <div class="p-5">
-
             @foreach ($categories as $category)
                 <div
                     class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">
-                    <div class="relative overflow-hidden rounded-t-xl">
-                        <img class="object-cover w-full h-[400px] transform transition duration-500 group-hover:scale-110"
-                            src="{{ $category->image }}" alt="{{ $category->name }}">
-                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300">
-                        </div>
-                    </div>
-
                     <div class="p-6 space-y-4">
-                        <h5
-                            class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
-                            {{ $category->name }}
-                        </h5>
-
-                        <div class="space-y-3">
-                            <p class="text-sm font-medium text-blue-500 dark:text-blue-400">
-                                {{ $category->slug }}
-                            </p>
-
-                            <p class="text-gray-600 dark:text-gray-300 line-clamp-3">
-                                {{ $category->description }}
-                            </p>
+                        <div class="flex justify-between">
+                            <h5
+                                class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
+                                {{ $category->name }}
+                            </h5>
+                        </div>
+                        <div>
+                            @foreach ($category->posts as $post)
+                                <div>
+                                    <a href="" class="uppercase font-bold">{{ $post->name }}</a>
+                                </div>
+                                <span>Category By ::
+                                    <a href="">{{ $post->user->name }}</a>
+                                </span><br>
+                                <span>Created At :: {{ $post->created_at->diffForHumans() }}</span>
+                                <hr>
+                            @endforeach
                         </div>
 
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center space-x-3">
-                                <input name="is_active" type="checkbox" value="1"
-                                    {{ old('is_active', $category->is_active) ? 'checked' : '' }}
-                                    class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 transition duration-150 ease-in-out">
-                                <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Status
-                                </label>
-                            </div>
+                        <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex space-x-2">
                                 <a href="{{ route('categories.edit', $category->id) }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -67,13 +54,25 @@
                                     </svg>
                                     Edit
                                 </a>
+                                <a href="{{ route('categories.show', $category->id) }}"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path
+                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                        <path fill-rule="evenodd"
+                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Show
+                                </a>
                                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
                                     class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
-                                        onclick="return confirm('Are you sure you want to delete this category?')">
+                                        onclick="return confirm('Are you sure you want to delete this post?')">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path fill-rule="evenodd"
@@ -89,7 +88,11 @@
                 </div>
             @endforeach
         </div>
-    </div>
 
+        <!-- Pagination -->
+        <div class="mt-6">
+            {{ $categories->links('pagination::tailwind') }}
+        </div>
+    </div>
 
 @endsection

@@ -36,17 +36,37 @@
                 @enderror
             </div>
 
+            {{-- <div class="mb-5">
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                <input type="hidden" name="old-image"  value="{{ $post->image }}">
+                <img src="{{ asset('storage/' . $post->image) }}" class="m-2" width="150px" alt="">
+                <input type="file" id="image" name="image" accept="image/*"
+                    class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+                <p class="mt-3 text-sm text-gray-500">Optional: Upload an image file</p>
+                @error('image')
+                    <div class="text-red-500 mt-1">{{ $message }}</div>
+                @enderror
+            </div> --}}
+
             <div class="mb-5">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
                 <input type="hidden" name="old-image" value="{{ $post->image }}">
-                <img src="{{ asset('storage/' . $post->image) }}" width="150px" alt="">
+
+                <!-- Show the current image -->
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="m-2" width="150px" alt="Post Image">
+                @endif
+
+                <!-- Image upload input -->
                 <input type="file" id="image" name="image" accept="image/*"
                     class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
-                <p class="mt-1 text-sm text-gray-500">Optional: Upload an image file</p>
+                <p class="mt-3 text-sm text-gray-500">Optional: Upload an image file</p>
+
                 @error('image')
                     <div class="text-red-500 mt-1">{{ $message }}</div>
                 @enderror
             </div>
+
 
             <div class="mb-5">
                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
@@ -103,7 +123,7 @@
             </div>
 
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
         </form>
     </div>
 
