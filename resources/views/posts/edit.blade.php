@@ -36,17 +36,7 @@
                 @enderror
             </div>
 
-            {{-- <div class="mb-5">
-                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                <input type="hidden" name="old-image"  value="{{ $post->image }}">
-                <img src="{{ asset('storage/' . $post->image) }}" class="m-2" width="150px" alt="">
-                <input type="file" id="image" name="image" accept="image/*"
-                    class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
-                <p class="mt-3 text-sm text-gray-500">Optional: Upload an image file</p>
-                @error('image')
-                    <div class="text-red-500 mt-1">{{ $message }}</div>
-                @enderror
-            </div> --}}
+           
 
             <div class="mb-5">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>

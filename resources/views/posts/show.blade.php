@@ -476,7 +476,4 @@
         </main>
 
     </div>
-
-
-
 @endsection

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use App\Models\Category;
 
@@ -22,11 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 /* Todo */
 Route::resource('todos',TodoController::class);
+
 /* Category */
 Route::resource('categories',CategoryController::class);
+
 /* Post */
 Route::resource('posts',PostController::class);
 
+/* users */
+Route::resource('users',UserController::class);
 
 
 
@@ -55,13 +60,13 @@ Route::resource('posts',PostController::class);
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 Route::get('/404', function () {
     return view('errors.404');

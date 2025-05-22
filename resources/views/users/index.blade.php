@@ -1,21 +1,24 @@
 @extends('layouts.app')
-@section('title', 'Category')
+@section('title', 'Users')
 @section('contact')
 
-    <h1 class="text-3xl font-bold p-5 text-center">Categories</h1>
+    <h1 class="text-3xl font-bold p-5 text-center">Users</h1>
+
     <div class="w-3/4 m-auto p-2 mt-5">
-        <a href="{{ route('categories.create') }}"
+        <a href="{{ route('users.create') }}"
             class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg text-sm transition duration-300 ease-in-out">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd"
                     d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                     clip-rule="evenodd" />
             </svg>
-            New category
+            New User
         </a>
         @if (session('success'))
             {{-- <p class="text-green-500 mt-1">{{ session('success') }}</p> --}}
-             <div class="flex justify-end items-center">
+
+
+            <div class="flex justify-end items-center">
 
                 @if (session('success'))
                     <div id="toast-interactive"
@@ -54,24 +57,77 @@
             </div>
         @endif
         <div class="p-5">
-            @foreach ($categories as $category)
+            @foreach ($users as $user)
                 <div
                     class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] mb-8">
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between">
-                            <h5
-                                class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
-                                {{ $category->name }}
-                            </h5>
+                    <div class="relative overflow-hidden rounded-t-xl">
+                        <img class="object-cover w-full h-[300px] transform transition duration-500 group-hover:scale-110"
+                            src="{{ $user->image ? Storage::url($user->image) : asset('storage/posts/a.jpg') }}" alt="{{ $user->title }}">
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300">
                         </div>
-                        <div>
-                            <span class="text-gray-900 dark:text-white">Created At :: {{ $category->created_at->diffForHumans() }}</span>
+                    </div>
+                    {{-- Eloquent Model:::function name --}}
+                    <div class="p-6 space-y-4">
+                        <div
+                            class="flex flex-col md:flex-row gap-6 p-6 bg-gray-50 dark:bg-gray-900  justify-center items-start">
+                            <!-- Left Column: User Header and Basic Info -->
+                            <!-- Left Column: User Header and Basic Info -->
+                            <div class="w-full md:w-1/3 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h5
+                                        class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition duration-300">
+                                        {{ $user->title }}
+                                    </h5>
+                                    <!-- Uncomment if status is needed -->
+                                    <!-- <span class="py-1 px-3 bg-amber-900 text-white text-sm font-medium rounded-full">{{ $user->status }}</span> -->
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <a href="#"
+                                            class="text-xl font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-600 transition-colors duration-200">
+                                            {{ $user->name }}
+                                        </a>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            Post By: <a href="#"
+                                                class="text-blue-500 hover:underline">{{ $user->name }}</a>
+                                        </span>
+                                    </div>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                                        Created At: {{ $user->created_at->diffForHumans() }}
+                                    </span>
+                                </div>
+                            </div>
 
+                            <!-- Right Column: User Details -->
+                            <div
+                                class="w-full md:w-2/3 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mt-6 md:mt-0 md:ml-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <p class="text-gray-600 dark:text-gray-300">
+                                        <strong class="font-semibold">Email:</strong> {{ $user->email }}
+                                    </p>
+                                    <p class="text-gray-600 dark:text-gray-300">
+                                        <strong class="font-semibold">Phone:</strong> {{ $user->phone }}
+                                    </p>
+                                    <p class="text-gray-600 dark:text-gray-300">
+                                        <strong class="font-semibold">Job:</strong> {{ $user->job }}
+                                    </p>
+                                    <p class="text-gray-600 dark:text-gray-300">
+                                        <strong class="font-semibold">Date of Birth:</strong> {{ $user->date_of_birth }}
+                                    </p>
+                                    <p class="text-gray-600 dark:text-gray-300 col-span-2">
+                                        <strong class="font-semibold">Address:</strong> {{ $user->address }}
+                                    </p>
+                                    <p class="text-gray-600 dark:text-gray-300 col-span-2">
+                                        <strong class="font-semibold">Email Verified At:</strong>
+                                        {{ $user->email_verified_at }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex space-x-2">
-                                <a href="{{ route('categories.edit', $category) }}"
+                                <a href="{{ route('users.edit', $user->id) }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -83,7 +139,7 @@
                                     </svg>
                                     Edit
                                 </a>
-                                <a href="{{ route('categories.show', $category) }}"
+                                <a href="{{ route('users.show', $user) }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -95,13 +151,12 @@
                                     </svg>
                                     Show
                                 </a>
-                                <form action="{{ route('categories.destroy', $category) }}" method="POST"
-                                    class="inline">
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
-                                        onclick="return confirm('Are you sure you want to delete this post?')">
+                                        onclick="return confirm('Are you sure you want to delete this user?')">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path fill-rule="evenodd"

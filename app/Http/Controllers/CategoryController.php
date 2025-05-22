@@ -45,7 +45,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+         $categories = Category::withCount('posts')->get();
+         return view('categories.show', compact('category','categories'));
     }
 
     /**
@@ -53,7 +54,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        // $categories = Category::all();
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -61,7 +63,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $validated = $request->validated();
+        $category->update($validated);
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     /**

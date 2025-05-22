@@ -389,13 +389,13 @@
 
             <!-- Categories Widget -->
             <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold mb-4"><a href="#">Categories List</a></h3>
+                <h3 class="text-lg font-bold mb-4"><a href="#">Users List</a></h3>
                 <ul class="space-y-2">
-                     @foreach ($categories as $category)
+                     @foreach ($users as $user)
                     <li>
                         <a href="#" class="flex justify-between items-center text-gray-700 hover:text-primary">
-                            <span class="capitalize font-bold">{{ $category->name }}</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded">{{ $category->posts_count }}</span>
+                            <span class="capitalize font-bold">{{ $user->name }}</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded">{{ $user->posts_count }}</span>
                         </a>
                     </li>
                      @endforeach
